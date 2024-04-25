@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+}
+
+group = 'com.hipoom'
+version = '0.0.2'
+
+apply from: "publish-jar-2-local-maven.gradle"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    // 引入 Gradle 的 SDK
+    implementation gradleApi()
+
+    // 引入 Transform 相关API
+    implementation "com.android.tools.build:gradle:3.5.4"
+
+    // Javassist
+    implementation 'org.javassist:javassist:3.21.0-GA'
+
+    // Gson
+    implementation 'com.google.code.gson:gson:2.8.0'
+}
+
+test {
+    useJUnitPlatform()
+}
