@@ -23,7 +23,7 @@ static String getProductArtifactId() {
  * 版本号。
  */
 static String getProductVersion() {
-    return "0.0.2"
+    return "0.0.3"
 }
 
 // 配置签名，上传到 central maven 必须要签名
@@ -67,7 +67,7 @@ tasks.register('javadocJar', Jar) {
     from javadoc.destinationDir
 }
 
- // 解决javadoc打包乱码
+ // 解决 javadoc 打包乱码，如果提示异常，再次构建即可。
 javadoc {
     options {
         encoding "UTF-8"
