@@ -29,7 +29,6 @@ public class Registry {
 
 
 
-
     /* ======================================================= */
     /* Public Methods                                          */
     /* ======================================================= */
@@ -58,6 +57,32 @@ public class Registry {
         return res;
     }
 
+    /**
+     * Register a mapping relationship.
+     */
+    public static synchronized void addAnnotation(Class<?> annotation, Class<?> annotatedClass) {
+        Set<Class<?>> res = annotation2Classes.get(annotation);
+        //noinspection Java8MapApi
+        if (res == null) {
+            res = new HashSet<>();
+            annotation2Classes.put(annotation, res);
+        }
+        res.add(annotatedClass);
+    }
+
+    /**
+     * Register a mapping relationship.
+     */
+    public static synchronized void addInterface(Class<?> interFace, Class<?> klass) {
+        Set<Class<?>> res = interface2Classes.get(interFace);
+        //noinspection Java8MapApi
+        if (res == null) {
+            res = new HashSet<>();
+            interface2Classes.put(interFace, res);
+        }
+        res.add(klass);
+    }
+
 
 
     /* ======================================================= */
@@ -73,26 +98,10 @@ public class Registry {
 
     }
 
-    private static void addAnnotation(Class<?> annotation, Class<?> annotatedClass) {
-        Set<Class<?>> res = annotation2Classes.get(annotation);
-        //noinspection Java8MapApi
-        if (res == null) {
-            res = new HashSet<>();
-            annotation2Classes.put(annotation, res);
-        }
-        res.add(annotatedClass);
-    }
-
-    private static void addInterface(Class<?> interFace, Class<?> klass) {
-        Set<Class<?>> res = interface2Classes.get(interFace);
-        //noinspection Java8MapApi
-        if (res == null) {
-            res = new HashSet<>();
-            interface2Classes.put(interFace, res);
-        }
-        res.add(klass);
-    }
-
+    /**
+     * Before calling {@link #getClassesAnnotatedWith(Class)} or {@link #getClassesImplements(Class)},
+     * this method will be called.
+     */
     private synchronized static void prepare() {
         if (isInitialed) {
             return;
