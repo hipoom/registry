@@ -55,7 +55,7 @@ The latest version is:
 ![processor](https://img.shields.io/maven-central/v/com.hipoom/processor-gradle6) 
 
 ### 2. Configure the build.gradle of the app-module level
-* add dependencies:
+* Add dependencies to the build.gradle:
 ```
 dependencies {
     implementation "com.hipoom:registry:0.0.3"
