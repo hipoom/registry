@@ -1,12 +1,18 @@
-# 💡 介绍
+![registry](https://img.shields.io/maven-central/v/com.hipoom/registry)  ![](https://img.shields.io/github/last-commit/hipoom/registry?color=blue) ![](https://img.shields.io/github/license/hipoom/registry)
+
+
+
+
+
+# 一、介绍
 如果你有一个多 module 的工程，甚至是一个由多个子工程组成的大工程项目，你可能遇到过这种问题：
 1. 在底层模块中，定义了一个接口，例如 OnStartupCompletedAction；
-2. 在各个业务层，各自实现了这个接口，例如 UpgradeResourceAction、SyncDataAction 等等；
+2. 在各个业务模块，各自实现了这个接口，例如 UpgradeResourceAction、SyncDataAction 等等；
 3. 在某一个时机，你需要获取所有实现了 OnStartupCompletedAction 接口的实现类，例如启动完毕后。
 
 ![](./doc-resources/case.jpg)
 
-你要如何获取 OnStartupCompletedAction 有哪些实现类呢？
+你要如何获取 OnStartupCompletedAction 有哪些实现类呢？  
 一个常规的做法，是在一个更顶层的 module 中，定义一个方法，各个子 module 的实现类，都在这个方法中注册：
 ```
 public Set<Class<OnStartupCompletedAction>> getAllFruitImpls() {
@@ -18,12 +24,12 @@ public Set<Class<OnStartupCompletedAction>> getAllFruitImpls() {
 }
 ```
 
-这么做，有很多缺点， 例如：
-① 这个 module 必须依赖了所有业务层的 module;
-② 每个业务层的 module 新增一个实现类，都需要手动跨工程在上层 module 中手动添加。
+这么做，有很多缺点， 例如：  
+① 这个 module 必须依赖了所有业务层的 module;  
+② 每个业务层的 module 新增一个实现类，都需要手动跨工程在上层 module 中手动添加。  
 
-Registry 库，就是为了解决这两个问题。
-Registry 可以在编译期间，搜集项目中，有哪些类添加了某个注解，或者哪些类实现了某个接口。在需要用的时候，通过：
+Registry 库，就是为了解决这两个问题。  
+Registry 可以在编译期间，搜集项目中，有哪些类添加了某个注解，或者哪些类实现了某个接口。在需要用的时候，通过一下方式即可获取：
 ```
 // 如果 OnStartupCompletedAction 是个接口
 Registry.getClassesImplements(OnStartupCompletedAction.class);
@@ -31,14 +37,17 @@ Registry.getClassesImplements(OnStartupCompletedAction.class);
 // 如果 OnStartupCompletedAction 是个注解
 Registry.getClassesAnnotatedWith(OnStartupCompletedAction.class);
 ```
-即可获取。
+<br/>
+<br/>
+<br/>
 
 
-# 🔨 使用方法
+
+
+# 二、使用方法
 
 ## 1. 配置 project 级别的 build.gradle
-在根目录的 `build.gradle` 文件中，添加 classpath：
-
+在根目录的 `build.gradle` 文件中，添加 classpath：  
 ```groovy
 buildscript {
     dependencies {
@@ -47,6 +56,7 @@ buildscript {
     }
 }
 ```
+最新的版本号是：![processor](https://img.shields.io/maven-central/v/com.hipoom/processor-gradle6)  
 该模块已经发布到 maven 中央仓库中。
 
 
@@ -58,6 +68,7 @@ dependencies {
     implementation "com.hipoom:registry:0.0.3"
 }
 ```
+最新的版本号是：![registry](https://img.shields.io/maven-central/v/com.hipoom/registry) 
 
 然后，在顶部添加 plugin：
 ```
