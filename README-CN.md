@@ -1,10 +1,10 @@
-![registry](https://img.shields.io/maven-central/v/com.hipoom/registry)    ![](https://img.shields.io/github/last-commit/hipoom/registry?color=blue)     ![](https://img.shields.io/github/license/hipoom/registry)
-
-
-
-
 # Registry
 
+![registry](https://img.shields.io/maven-central/v/com.hipoom/registry)    ![](https://img.shields.io/github/last-commit/hipoom/registry?color=blue)     ![](https://img.shields.io/github/license/hipoom/registry)
+
+简体中文 | [ENGLISH](https://github.com/hipoom/registry/blob/main/README.md)
+
+<br/>
 ## 一、介绍
 如果你有一个多 module 的工程，甚至是一个由多个子工程组成的大工程项目，你可能遇到过这种问题：
 1. 在底层模块中，定义了一个接口，例如 OnStartupCompletedAction；
