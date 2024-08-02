@@ -1,10 +1,11 @@
-![registry](https://img.shields.io/maven-central/v/com.hipoom/registry)  ![](https://img.shields.io/github/last-commit/hipoom/registry?color=blue) ![](https://img.shields.io/github/license/hipoom/registry)
+![registry](https://img.shields.io/maven-central/v/com.hipoom/registry)    ![](https://img.shields.io/github/last-commit/hipoom/registry?color=blue)     ![](https://img.shields.io/github/license/hipoom/registry)
 
 
 
 
+# Registry
 
-# 一、介绍
+## 一、介绍
 如果你有一个多 module 的工程，甚至是一个由多个子工程组成的大工程项目，你可能遇到过这种问题：
 1. 在底层模块中，定义了一个接口，例如 OnStartupCompletedAction；
 2. 在各个业务模块，各自实现了这个接口，例如 UpgradeResourceAction、SyncDataAction 等等；
@@ -39,14 +40,10 @@ Registry.getClassesAnnotatedWith(OnStartupCompletedAction.class);
 ```
 <br/>
 <br/>
-<br/>
 
+## 二、使用方法
 
-
-
-# 二、使用方法
-
-## 1. 配置 project 级别的 build.gradle
+### 1. 配置 project 级别的 build.gradle
 在根目录的 `build.gradle` 文件中，添加 classpath：  
 ```groovy
 buildscript {
@@ -56,21 +53,26 @@ buildscript {
     }
 }
 ```
-最新的版本号是：![processor](https://img.shields.io/maven-central/v/com.hipoom/processor-gradle6)  
+最新的版本号是：  
+![processor](https://img.shields.io/maven-central/v/com.hipoom/processor-gradle6)  
 该模块已经发布到 maven 中央仓库中。
 
 
-## 2. 配置 app module 的 build.gradle
-首先，在 dependencies 中，添加依赖：
+### 2. 配置 app module 的 build.gradle
+1. 首先，在 dependencies 中，添加依赖：
+
 ```
 dependencies {
     // 添加这一行
     implementation "com.hipoom:registry:0.0.3"
 }
 ```
-最新的版本号是：![registry](https://img.shields.io/maven-central/v/com.hipoom/registry) 
+最新的版本号是：  
+![registry](https://img.shields.io/maven-central/v/com.hipoom/registry) 
 
-然后，在顶部添加 plugin：
+<br/>
+2. 然后，在顶部添加 plugin 的配置：
+
 ```
 apply plugin: 'hipoom'
 hipoom {
@@ -94,3 +96,23 @@ hipoom {
     }
 }
 ```
+
+### 3. 在代码中使用
+现在，你可以在代码中使用 Registry 了：
+```
+// 如果 OnStartupCompletedAction 是个接口
+Registry.getClassesImplements(OnStartupCompletedAction.class);
+
+// 如果 OnStartupCompletedAction 是个注解
+Registry.getClassesAnnotatedWith(OnStartupCompletedAction.class);
+```
+
+如果你有特殊需求，你也可以手动注册映射：
+```
+// 手动注册注解和类
+Registry.addAnnotation(YourAnnotation.class, YourClass.class);
+
+// 手动注册接口和类
+Registry.addInterface(YourInterface.class, YourClass.class);
+```
+
