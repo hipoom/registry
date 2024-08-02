@@ -51,11 +51,20 @@ buildscript {
     }
 }
 ```
-The latest version is：
+The latest version is:  
 ![processor](https://img.shields.io/maven-central/v/com.hipoom/processor-gradle6) 
 
 ### 2. Configure the build.gradle of the app-module level
-Add plugin configuration to the build.gradle:
+* add dependencies:
+```
+dependencies {
+    implementation "com.hipoom:registry:0.0.3"
+}
+```
+The latest version is:  
+![registry](https://img.shields.io/maven-central/v/com.hipoom/registry) 
+
+* Add plugin configuration to the build.gradle:
 ```
 apply plugin: 'hipoom'
 hipoom {
