@@ -13,7 +13,7 @@ If you have a multi-module project, or even a big project consisting of multiple
 
 ![](./doc-resources/case.jpg)
 
-How can you obtain the implementation classes of this interface?  
+How can you collect the implementation classes of this interface?  
 A common practice is to define a method in a higher-level module. In this method, all implementation classes are added to a set:  
 ```
 public Set<Class<OnStartupCompletedAction>> getAllFruitImpls() {
