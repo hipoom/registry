@@ -75,7 +75,7 @@ hipoom {
             "com.hipoom.demo.TestInterface"
         ]
 
-        // Configure whether to track the parent class of the class.
+        // Configure whether to track the parent class of the class or not.
         // for example: ClassA --extends--> ClassB --implements--> InterfaceC.
         // If this field is set to false, ClassA will not be collected;
         // If this field is set to true, ClassA will be collected;
